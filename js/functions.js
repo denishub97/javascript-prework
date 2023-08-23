@@ -34,43 +34,6 @@ pickScissors.addEventListener('click', function () {
     playerMove(SCISSORS)
 });
 
-// OPIS DZIAŁANIA PRZYCISKU NEWGAME
-
-document.querySelector('#newGame_layer button')
-  .addEventListener('click', function(){
-    var inputEl = document.querySelector('#newGame_layer input')
-    console.log('Utworzenie nowej gry', inputEl, inputEl.value)
-    player = inputEl.value
-    var gameLayer = document.querySelector('#game')
-    gameLayer.style.display = 'block'
-    var nameSelectLayer = document.querySelector('#newGame_layer')
-    nameSelectLayer.style.display = 'none'
-    document.querySelector('#new-game').style.display= 'none'
-  });
-document.querySelector('#new-game')
-  .addEventListener('click', function(){
-    var gameLayer = document.querySelector('#game')
-    gameLayer.style.display = 'none'
-    var nameSelectLayer = document.querySelector('#newGame_layer')
-    nameSelectLayer.style.display = 'block'
-    scores = {
-      pc: 0,
-      player: 0
-    }
-    elemOutput.innerHTML = ''
-    playerResult.innerHTML = ''
-    pcResult.innerHTML = ''
-    result.innerHTML = ''
-  
-    result.appendChild (playerResult)
-    result.appendChild (pcResult)
-    document.querySelector('.dismiss')
-    .style.display = 'flex'
-    document.querySelector('#output')
-    .style.display = 'block'
-})
-
-
 // Opis funkcji pcMove
 function getPCMove() {
   var rand = Math.floor((Math.random() * 10) % 3);
@@ -115,26 +78,21 @@ var playerMove = function(playerPick) {
   if (playerPick === pcPick) {
     winner = REMIS;
     winnerLabel = REMIS;
-  } else {
-    // GRACZ WYGRA GDY
-    if (
+  } else if (
       (playerPick === ROCK && pcPick === SCISSORS)
       || (playerPick === SCISSORS && pcPick === PAPER)
       || (playerPick === PAPER && pcPick === ROCK)
     ) {
       winner = PLAYER;
-      winnerLabel = player;
+      winnerLabel = PLAYER;
     }
-    
-  }
-  
   
   console.log('winner ' + winner);
   
-  elemOutput.innerHTML = 'Wygrał: ' + winnerLabel + '<br>' + playerName + ' wybrał: ' + playerPick + '<br>Komputer wybrał: ' + pcPick;
+  elemOutput.innerHTML = 'Wygrał: ' + winnerLabel + '<br>' + PLAYER + ' wybrał: ' + playerPick + '<br>Komputer wybrał: ' + pcPick;
   
   if (winner === COMPUTER){
-  scores.pc += 1
+    scores.pc += 1
   }
   else if (winner === PLAYER){
     scores.player += 1
