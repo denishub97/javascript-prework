@@ -1,25 +1,25 @@
 'use strict';
-var PAPER = 'papier';
-var ROCK = 'kamien';
-var SCISSORS = 'nozyce';
+const PAPER = 'papier';
+const ROCK = 'kamien';
+const SCISSORS = 'nozyce';
 
-var PLAYER = 'Gracz';
-var REMIS = 'Remis';
-var COMPUTER = 'Komputer';
+const PLAYER = 'Gracz';
+const REMIS = 'Remis';
+const COMPUTER = 'Komputer';
 
-var scores = {
+let scores = {
   pc: 0,
   player: 0
 };
 
 //Poniżej opisuję wybór przycisków przez gracza
-var elemOutput = document.querySelector('#output'); // pierwszy znaleziony
-var playerResult = document.querySelector('#playerResultContainer');
-var pcResult = document.querySelector('#pcResultContainer');
-var result = document.querySelector('#result');
-var pickRock = document.getElementById(ROCK);
-var pickPaper = document.getElementById(PAPER);
-var pickScissors = document.getElementById(SCISSORS);
+const elemOutput = document.querySelector('#output'); // pierwszy znaleziony
+const playerResult = document.querySelector('#playerResultContainer');
+const pcResult = document.querySelector('#pcResultContainer');
+const result = document.querySelector('#result');
+const pickRock = document.getElementById(ROCK);
+const pickPaper = document.getElementById(PAPER);
+const pickScissors = document.getElementById(SCISSORS);
 
 // Nasłuchiwanie przycisków wyboru dla gracza
 pickRock.addEventListener('click', function () {
@@ -36,7 +36,7 @@ pickScissors.addEventListener('click', function () {
 
 // Opis funkcji pcMove
 function getPCMove() {
-  var rand = Math.floor((Math.random() * 10) % 3);
+  let rand = Math.floor((Math.random() * 10) % 3);
   // 0 1 2
   switch(rand) {
     case 0: return ROCK;
@@ -67,10 +67,10 @@ function resultOfTheGame(){
 }
 
 // Opis funkcji playerMove
-var playerMove = function(playerPick) {
-  var winner = COMPUTER;
-  var winnerLabel = 'Komputer'
-  var pcPick = getPCMove();
+let playerMove = function(playerPick) {
+  let winner = COMPUTER;
+  let winnerLabel = 'Komputer'
+  let pcPick = getPCMove();
   
   console.clear();
   console.log(playerPick + ' vs. ' + pcPick);
